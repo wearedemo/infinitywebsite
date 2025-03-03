@@ -66,6 +66,7 @@
       align-items: center;
       justify-content: space-between;
       height: 70px;
+      position: relative;
     }
     .nav-logo {
       display: flex;
@@ -81,6 +82,22 @@
       font-weight: 700;
       font-size: 1.2rem;
     }
+    /* Hamburger Menu for Mobile */
+    #menu-toggle {
+      display: none;
+    }
+    .menu-icon {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .menu-icon span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      margin: 4px;
+      background-color: #ffffff;
+    }
     nav ul {
       list-style: none;
       display: flex;
@@ -94,6 +111,30 @@
     }
     nav a:hover {
       color: #1ec6ff;
+    }
+    /* Mobile Adjustments */
+    @media (max-width: 768px) {
+      .menu-icon {
+        display: flex;
+      }
+      nav ul {
+        flex-direction: column;
+        width: 100%;
+        background-color: #0f1e40;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        display: none;
+      }
+      nav ul li {
+        text-align: center;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      /* Show menu when checkbox is checked */
+      #menu-toggle:checked + .menu-icon + nav ul {
+        display: flex;
+      }
     }
     /* Hero Section */
     #hero {
@@ -114,7 +155,7 @@
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-    /* Particles container */
+    /* Particles Container */
     #particles-js {
       position: absolute;
       width: 100%;
@@ -216,6 +257,15 @@
       max-width: 800px;
       margin: 0 auto 40px;
     }
+    /* About Section - Additional Compliant Solutions Text */
+    #about .compliance-text {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 20px auto 0;
+      color: #555;
+    }
     /* Microsoft Partner Badge with Pulse */
     .partner-badge {
       display: inline-block;
@@ -246,7 +296,6 @@
       border-radius: 6px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       transition: transform 0.3s;
-      /* Perspective for 3D tilt */
       transform-style: preserve-3d;
     }
     .service-box:hover {
@@ -370,6 +419,13 @@
         <img src="https://www.infinityedgeai.com/logo.png" alt="Infinity Edge AI Logo" />
         <span>Infinity Edge AI</span>
       </a>
+      <!-- Mobile menu toggle -->
+      <input type="checkbox" id="menu-toggle" />
+      <label for="menu-toggle" class="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
       <nav>
         <ul>
           <li><a href="#about">About</a></li>
@@ -400,6 +456,9 @@
     <p>
       Infinity Edge AI is a forward-thinking company offering innovative AI solutions. Our expert team blends artificial intelligence, data science, and software engineering to craft bespoke, high-impact products.
     </p>
+    <p class="compliance-text">
+      We develop fully compliant, enterprise-grade solutions that meet the highest industry standards. Our certified AI and automation services are backed by extensive expertise in Microsoft Azure, ensuring every project is secure, scalable, and innovative.
+    </p>
     <div class="partner-badge" data-aos="fade-up" data-aos-delay="200">
       Proud Microsoft Partner
     </div>
@@ -428,7 +487,7 @@
         </p>
       </div>
       <div class="service-box" data-aos="fade-up" data-aos-delay="400">
-        <h3>Data Analysis & Insights</h3>
+        <h3>Data Analysis &amp; Insights</h3>
         <p>
           Transform raw data into actionable insights for strategic decision-making and growth.
         </p>
@@ -444,7 +503,7 @@
         <img src="https://media.licdn.com/dms/image/v2/D4D03AQFDwEfjc1olWw/profile-displayphoto-shrink_400_400/B4DZVN27D0G4Ak-/0/1740767998815?e=1746662400&v=beta&t=20bjxU_6pPjg6jhNbQkg5n9uu6tg-KV6ilrg_xv34-g" alt="Marius Filipaş">
         <h3>Marius Filipaş</h3>
         <p>
-          Co-Founder & Business Development Manager<br>
+          Co-Founder &amp; Business Lead<br>
           <a href="mailto:marius.filipas@infinityedgeai.com">marius.filipas@infinityedgeai.com</a>
         </p>
       </div>
@@ -452,7 +511,7 @@
         <img src="https://static.vecteezy.com/system/resources/thumbnails/033/882/148/small_2x/transparent-background-person-icon-free-png.png" alt="Marius Pădureanu">
         <h3>Marius Pădureanu</h3>
         <p>
-          Co-Founder & Business Lead<br>
+          Co-Founder &amp; Business Development Manager<br>
           <a href="mailto:marius@infinityedgeai.com">marius@infinityedgeai.com</a>
         </p>
       </div>
