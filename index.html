@@ -88,16 +88,8 @@
     }
     .menu-icon {
       display: none;
-      flex-direction: column;
-      cursor: pointer;
     }
-    .menu-icon span {
-      display: block;
-      width: 25px;
-      height: 3px;
-      margin: 4px;
-      background-color: #ffffff;
-    }
+    /* Navigation links */
     nav ul {
       list-style: none;
       display: flex;
@@ -116,6 +108,19 @@
     @media (max-width: 768px) {
       .menu-icon {
         display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        cursor: pointer;
+      }
+      .menu-icon span {
+        display: block;
+        width: 30px;
+        height: 3px;
+        margin: 5px 0;
+        background-color: #ffffff;
+        transition: background-color 0.3s, transform 0.3s;
       }
       nav ul {
         flex-direction: column;
@@ -257,7 +262,7 @@
       max-width: 800px;
       margin: 0 auto 40px;
     }
-    /* About Section - Additional Compliant Solutions Text */
+    /* About Section - Additional Compliance Text */
     #about .compliance-text {
       font-size: 1rem;
       font-weight: 300;
@@ -503,7 +508,7 @@
         <img src="https://media.licdn.com/dms/image/v2/D4D03AQFDwEfjc1olWw/profile-displayphoto-shrink_400_400/B4DZVN27D0G4Ak-/0/1740767998815?e=1746662400&v=beta&t=20bjxU_6pPjg6jhNbQkg5n9uu6tg-KV6ilrg_xv34-g" alt="Marius Filipaş">
         <h3>Marius Filipaş</h3>
         <p>
-          Co-Founder &amp; Business Lead<br>
+          Co-Founder &amp; Business Development Manager<br>
           <a href="mailto:marius.filipas@infinityedgeai.com">marius.filipas@infinityedgeai.com</a>
         </p>
       </div>
@@ -511,7 +516,7 @@
         <img src="https://static.vecteezy.com/system/resources/thumbnails/033/882/148/small_2x/transparent-background-person-icon-free-png.png" alt="Marius Pădureanu">
         <h3>Marius Pădureanu</h3>
         <p>
-          Co-Founder &amp; Business Development Manager<br>
+          Co-Founder &amp; Business Lead<br>
           <a href="mailto:marius@infinityedgeai.com">marius@infinityedgeai.com</a>
         </p>
       </div>
