@@ -2,130 +2,484 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Infinity Edge AI – Under Construction</title>
+  <meta name="description" content="Infinity Edge AI - Shaping the Future with AI" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infinity Edge AI</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet" />
+  <!-- AOS Animation Library CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
   <style>
-    /* RESET */
+    /* Global Reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
-
     body {
-      font-family: "Arial", sans-serif;
-      background: linear-gradient(135deg, #0c0f15, #081229, #0f1e40);
+      font-family: 'Montserrat', sans-serif;
+      color: #333;
+      background-color: #f8f9fa;
+      overflow-x: hidden;
+    }
+    /* Header & Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background-color: #0f1e40; /* Dark navy */
+      z-index: 999;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      width: 40px;
+      margin-right: 10px;
+    }
+    .nav-logo span {
       color: #ffffff;
-      min-height: 100vh;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #1ec6ff;
+    }
+    /* Hero Section with Particles */
+    #hero {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      overflow: hidden;
+      background: #0c0f15;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .container {
       text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 0 20px;
     }
-
-    .logo {
-      width: 120px;
-      margin: 0 auto 20px;
+    /* Particles container */
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
     }
-
-    .title {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      color: #ffffff;
+      padding: 20px;
+    }
+    #hero h1 {
+      font-size: 3rem;
       font-weight: 700;
-      letter-spacing: 1px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
     }
-
-    .subtitle {
-      font-size: 1.2rem;
+    #hero p {
+      font-size: 1.25rem;
       font-weight: 300;
       margin-bottom: 40px;
-      color: #cfcfcf;
+      line-height: 1.6;
     }
-
-    .content {
-      margin-bottom: 40px;
+    .btn-primary {
+      background-color: #1ec6ff;
+      color: #ffffff;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+      text-decoration: none;
     }
-
-    .contact {
+    .btn-primary:hover {
+      background-color: #40d2ff;
+      transform: scale(1.05);
+    }
+    /* About Section */
+    #about {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    #about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: #0f1e40;
+    }
+    #about p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto 40px;
+    }
+    /* Microsoft Partner Badge */
+    .partner-badge {
+      display: inline-block;
+      background-color: #f3f3f3;
+      color: #0f1e40;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-top: 20px;
+    }
+    /* Services Section */
+    #services {
+      background-color: #ffffff;
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    #services h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: #0f1e40;
+    }
+    .services-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .service-box {
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .service-box:hover {
+      transform: translateY(-5px);
+    }
+    .service-box h3 {
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+      color: #0f1e40;
+      font-weight: 600;
+    }
+    .service-box p {
       font-size: 1rem;
       line-height: 1.6;
+      color: #555;
+    }
+    /* Team Section */
+    #team {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    #team h2 {
+      font-size: 2.5rem;
       margin-bottom: 20px;
+      font-weight: 700;
+      color: #0f1e40;
     }
-
-    .contact p {
-      margin: 10px 0;
+    .team-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
     }
-
-    .contact a {
+    .team-member {
+      background-color: #ffffff;
+      border-radius: 6px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+    .team-member img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+    .team-member h3 {
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+      color: #0f1e40;
+      font-weight: 600;
+    }
+    .team-member p {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.4;
+    }
+    /* Contact Section */
+    #contact {
+      background-color: #f0f4f8;
+      padding: 80px 20px;
+      text-align: center;
+    }
+    #contact h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: #0f1e40;
+    }
+    .contact-info {
+      margin: 0 auto;
+      max-width: 600px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #333;
+    }
+    .contact-info a {
       color: #1ec6ff;
       text-decoration: none;
       font-weight: 500;
     }
-
-    .contact a:hover {
+    .contact-info a:hover {
       text-decoration: underline;
     }
-
-    .footer {
-      font-size: 0.9rem;
-      color: #aaaaaa;
-      margin-top: 30px;
-    }
-
     address {
       font-style: normal;
       line-height: 1.6;
       margin: 10px 0;
+      color: #555;
+    }
+    /* Footer */
+    footer {
+      background-color: #0f1e40;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px 0;
+    }
+    footer p {
+      font-size: 0.9rem;
+    }
+    .footer-year {
+      font-weight: 500;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Replace the src below with the path to your Infinity Edge AI logo -->
-    <img src="logo.png" alt="Infinity Edge AI Logo" class="logo"/>
-
-    <h1 class="title">Infinity Edge AI</h1>
-    <h2 class="subtitle">We’re Building the Future of AI Solutions</h2>
-
-    <div class="content">
-      <p>Our website is currently under construction. Stay tuned for something amazing!</p>
+  <!-- Header & Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <!-- Replace with your actual logo -->
+        <img src="https://www.infinityedgeai.com/logo.png" alt="Infinity Edge AI Logo" />
+        <span>Infinity Edge AI</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
     </div>
+  </header>
 
-    <div class="contact">
-      <p><strong>Contact us:</strong></p>
+  <!-- Hero Section with Particles -->
+  <section id="hero">
+    <div id="particles-js"></div>
+    <div class="hero-content" data-aos="fade-up">
+      <h1>Shaping the Future with AI</h1>
       <p>
+        At Infinity Edge AI, we are dedicated to pushing the boundaries of artificial intelligence, delivering cutting-edge solutions to empower businesses worldwide.
+      </p>
+      <a href="#about" class="btn-primary">Learn More</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" data-aos="fade-up">
+    <h2>About Infinity Edge AI</h2>
+    <p>
+      Infinity Edge AI is a forward-thinking company focused on providing innovative AI solutions. Our team of experts combines years of experience in artificial intelligence, data analysis, and software development to create bespoke, high-impact products for clients across various industries.
+    </p>
+    <div class="partner-badge" data-aos="fade-up" data-aos-delay="200">
+      Proud Microsoft Partner
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" data-aos="fade-up">
+    <h2>Our Services</h2>
+    <div class="services-container">
+      <div class="service-box" data-aos="fade-up" data-aos-delay="100">
+        <h3>AI Consulting</h3>
+        <p>
+          We help businesses identify opportunities to leverage AI technologies for optimal efficiency and innovation.
+        </p>
+      </div>
+      <div class="service-box" data-aos="fade-up" data-aos-delay="200">
+        <h3>Custom AI Solutions</h3>
+        <p>
+          Our team designs and develops bespoke AI solutions tailored to your specific industry needs and goals.
+        </p>
+      </div>
+      <div class="service-box" data-aos="fade-up" data-aos-delay="300">
+        <h3>Machine Learning Models</h3>
+        <p>
+          We build and deploy advanced machine learning models that unlock insights from complex data sets.
+        </p>
+      </div>
+      <div class="service-box" data-aos="fade-up" data-aos-delay="400">
+        <h3>Data Analysis & Insights</h3>
+        <p>
+          Transform raw data into actionable insights to drive strategic decisions and long-term growth.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section id="team" data-aos="fade-up">
+    <h2>Meet Our Team</h2>
+    <div class="team-container">
+      <div class="team-member" data-aos="fade-up" data-aos-delay="100">
+        <!-- Replace placeholder with your team image -->
+        <img src="https://media.licdn.com/dms/image/v2/D4D03AQFDwEfjc1olWw/profile-displayphoto-shrink_400_400/B4DZVN27D0G4Ak-/0/1740767998815?e=1746662400&v=beta&t=20bjxU_6pPjg6jhNbQkg5n9uu6tg-KV6ilrg_xv34-g" alt="Marius Filipas">
+        <h3>Marius Filipas</h3>
+        <p>
+          Co-Founder & Business Development Manager<br>
+          <a href="mailto:marius.filipas@infinityedgeai.com">marius.filipas@infinityedgeai.com</a>
+        </p>
+      </div>
+      <div class="team-member" data-aos="fade-up" data-aos-delay="200">
+        <!-- Replace placeholder with your team image -->
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/033/882/148/small_2x/transparent-background-person-icon-free-png.png" alt="Marius Pădureanu">
+        <h3>Marius Pădureanu</h3>
+        <p>
+          Co-Founder & Business Lead<br>
+          <a href="mailto:marius@infinityedgeai.com">marius@infinityedgeai.com</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" data-aos="fade-up">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <p>
+        Have a project in mind or just want to chat? We’d love to hear from you.
+      </p>
+      <p>
+        <strong>General Inquiries:</strong><br>
         <a href="mailto:office@infinityedgeai.com">office@infinityedgeai.com</a>
       </p>
-
-      <p><strong>Contact persons:</strong></p>
-      <p>
-        Marius Filipas – 
-        <a href="mailto:marius.filipas@infinityedgeai.com">marius.filipas@infinityedgeai.com</a><br/>
-        Marius Pădureanu – 
-        <a href="mailto:marius@infinityedgeai.com">marius@infinityedgeai.com</a>
-      </p>
-
       <p><strong>Address:</strong></p>
       <address>
-        NR. 60 Strada 1 Decembrie 1918<br/>
+        NR. 60 Strada 1 Decembrie 1918<br>
         Piatra-Neamţ, Neamţ, 610290, Romania
       </address>
     </div>
+  </section>
 
-    <div class="footer">
-      &copy; <span id="year"></span> Infinity Edge AI. All rights reserved.
-    </div>
-  </div>
+  <!-- Footer -->
+  <footer>
+    <p>
+      &copy; <span class="footer-year"></span> Infinity Edge AI. All rights reserved.
+    </p>
+  </footer>
 
+  <!-- Scripts -->
+  <!-- Particles.js Library -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    // Display current year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
+    /* ParticlesJS Configuration */
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": { "value": "#ffffff" },
+        "shape": {
+          "type": "circle",
+          "stroke": { "width": 0, "color": "#000000" },
+          "polygon": { "nb_sides": 5 }
+        },
+        "opacity": { "value": 0.5, "random": false },
+        "size": { "value": 3, "random": true },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 4,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out"
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "repulse" },
+          "onclick": { "enable": true, "mode": "push" },
+          "resize": true
+        },
+        "modes": {
+          "repulse": { "distance": 100 },
+          "push": { "particles_nb": 4 }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+  <!-- AOS Animation Library JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+    // Update footer year automatically
+    document.querySelector('.footer-year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
