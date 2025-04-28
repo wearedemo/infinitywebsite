@@ -1,629 +1,361 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="description" content="Infinity Edge AI - Shaping the Future with AI" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Infinity Edge AI</title>
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet" />
-  <!-- AOS Animation Library CSS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-  <style>
-    /* Global Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Montserrat', sans-serif;
-      color: #333;
-      background-color: #f8f9fa;
-      overflow-x: hidden;
-    }
-    /* Preloader */
-    #preloader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #0c0f15;
-      z-index: 2000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .spinner {
-      border: 4px solid rgba(255, 255, 255, 0.3);
-      border-top: 4px solid #1ec6ff;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    /* Header & Navigation */
-    header {
-      position: sticky;
-      top: 0;
-      width: 100%;
-      background-color: #0f1e40;
-      z-index: 1000;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 70px;
-      position: relative;
-    }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-    }
-    .nav-logo img {
-      width: 40px;
-      margin-right: 10px;
-    }
-    .nav-logo span {
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 1.2rem;
-    }
-    /* Hamburger Menu for Mobile */
-    #menu-toggle {
-      display: none;
-    }
-    .menu-icon {
-      display: none;
-    }
-    /* Navigation links */
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-    }
-    nav a {
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #1ec6ff;
-    }
-    /* Mobile Adjustments */
-    @media (max-width: 768px) {
-      .menu-icon {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 15px;
-        right: 20px;
-        cursor: pointer;
-      }
-      .menu-icon span {
-        display: block;
-        width: 30px;
-        height: 3px;
-        margin: 5px 0;
-        background-color: #ffffff;
-        transition: background-color 0.3s, transform 0.3s;
-      }
-      nav ul {
-        flex-direction: column;
-        width: 100%;
-        background-color: #0f1e40;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        display: none;
-      }
-      nav ul li {
-        text-align: center;
-        padding: 10px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      }
-      /* Show menu when checkbox is checked */
-      #menu-toggle:checked + .menu-icon + nav ul {
-        display: flex;
-      }
-    }
-    /* Hero Section */
-    #hero {
-      position: relative;
-      width: 100%;
-      height: 80vh;
-      overflow: hidden;
-      background: linear-gradient(-45deg, #0c0f15, #081229, #0f1e40, #1ec6ff);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    /* Particles Container */
-    #particles-js {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 1;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      color: #ffffff;
-      padding: 20px;
-    }
-    /* Glitch Effect on Hero Heading */
-    .hero-content h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      position: relative;
-      animation: glitch 2s infinite;
-    }
-    @keyframes glitch {
-      0% { clip: rect(42px, 9999px, 44px, 0); transform: translate(0); }
-      10% { clip: rect(85px, 9999px, 90px, 0); transform: translate(-2px, -2px); }
-      20% { clip: rect(12px, 9999px, 16px, 0); transform: translate(2px, 2px); }
-      30% { clip: rect(55px, 9999px, 60px, 0); transform: translate(-2px, 0); }
-      40% { clip: rect(18px, 9999px, 22px, 0); transform: translate(2px, -2px); }
-      50% { clip: rect(42px, 9999px, 44px, 0); transform: translate(0); }
-      100% { clip: rect(42px, 9999px, 44px, 0); transform: translate(0); }
-    }
-    #hero p {
-      font-size: 1.25rem;
-      font-weight: 300;
-      margin: 20px 0 40px;
-      line-height: 1.6;
-    }
-    .btn-primary {
-      background-color: #1ec6ff;
-      color: #ffffff;
-      padding: 15px 30px;
-      border: none;
-      border-radius: 4px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.3s;
-      text-decoration: none;
-    }
-    .btn-primary:hover {
-      background-color: #40d2ff;
-      transform: scale(1.05);
-    }
-    /* Scroll Indicator */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 30px;
-      height: 50px;
-      border: 2px solid #ffffff;
-      border-radius: 25px;
-      opacity: 0.8;
-    }
-    .scroll-indicator::after {
-      content: "";
-      display: block;
-      width: 6px;
-      height: 6px;
-      background: #ffffff;
-      border-radius: 50%;
-      margin: 6px auto;
-      animation: scroll 2s infinite;
-    }
-    @keyframes scroll {
-      0% { opacity: 0; transform: translateY(0); }
-      50% { opacity: 1; transform: translateY(10px); }
-      100% { opacity: 0; transform: translateY(0); }
-    }
-    /* Sections */
-    section {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    section h2 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      font-weight: 700;
-      color: #0f1e40;
-    }
-    section p {
-      font-size: 1.1rem;
-      font-weight: 300;
-      line-height: 1.8;
-      max-width: 800px;
-      margin: 0 auto 40px;
-    }
-    /* About Section - Additional Compliance Text */
-    #about .compliance-text {
-      font-size: 1rem;
-      font-weight: 300;
-      line-height: 1.8;
-      max-width: 800px;
-      margin: 20px auto 0;
-      color: #555;
-    }
-    /* Microsoft Partner Badge with Pulse */
-    .partner-badge {
-      display: inline-block;
-      background-color: #f3f3f3;
-      color: #0f1e40;
-      padding: 10px 20px;
-      border-radius: 20px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      margin-top: 20px;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-    /* Services Section - Tilt Effect on Hover */
-    .services-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-    .service-box {
-      background-color: #f8f9fa;
-      padding: 20px;
-      border-radius: 6px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-      transform-style: preserve-3d;
-    }
-    .service-box:hover {
-      transform: translateY(-5px) perspective(1000px) rotateX(3deg) rotateY(3deg);
-    }
-    .service-box h3 {
-      margin-bottom: 15px;
-      font-size: 1.3rem;
-      color: #0f1e40;
-      font-weight: 600;
-    }
-    .service-box p {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #555;
-    }
-    /* Team Section */
-    .team-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 40px;
-      margin-top: 40px;
-    }
-    .team-member {
-      background-color: #ffffff;
-      border-radius: 6px;
-      padding: 20px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
-    }
-    .team-member:hover {
-      transform: translateY(-5px);
-    }
-    .team-member img {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 15px;
-    }
-    .team-member h3 {
-      font-size: 1.3rem;
-      margin-bottom: 5px;
-      color: #0f1e40;
-      font-weight: 600;
-    }
-    .team-member p {
-      font-size: 1rem;
-      color: #555;
-      line-height: 1.4;
-    }
-    /* Contact Section */
-    .contact-info a {
-      color: #1ec6ff;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .contact-info a:hover {
-      text-decoration: underline;
-    }
-    address {
-      font-style: normal;
-      line-height: 1.6;
-      margin: 10px 0;
-      color: #555;
-    }
-    /* Footer */
-    footer {
-      background-color: #0f1e40;
-      color: #ffffff;
-      text-align: center;
-      padding: 20px 0;
-    }
-    footer p {
-      font-size: 0.9rem;
-    }
-    .footer-year {
-      font-weight: 500;
-    }
-    /* Back-to-top Button */
-    #back-to-top {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background-color: #1ec6ff;
-      color: #fff;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s, visibility 0.3s;
-      z-index: 1500;
-    }
-    #back-to-top.show {
-      opacity: 1;
-      visibility: visible;
-    }
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-      #hero h1 { font-size: 2.5rem; }
-      #hero p { font-size: 1rem; }
-      section h2 { font-size: 2rem; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WLM Transport - Transport persoane și colete internațional</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Preloader -->
-  <div id="preloader">
-    <div class="spinner"></div>
-  </div>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="logo.png" alt="WLM Transport Logo">
+                <h1>WLM Transport</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#acasa">Acasă</a></li>
+                    <li><a href="#servicii">Servicii</a></li>
+                    <li><a href="#rute">Rute</a></li>
+                    <li><a href="#beneficii">Beneficii</a></li>
+                    <li><a href="#testimoniale">Recenzii</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
 
-  <!-- Back-to-top Button -->
-  <button id="back-to-top" title="Back to Top">&#8679;</button>
+    <section class="hero" id="acasa">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Transport internațional de persoane și colete</h2>
+                <p>🇩🇪 🇧🇪 🇳🇱 🇫🇷 🇮🇹 🇨🇿 🇭🇺 🇦🇹 🇸🇮 🇸🇰</p>
+                <h3>PLECĂRI ZILNICE DE LA ADRESĂ LA ADRESĂ!</h3>
+                <div class="contact-buttons">
+                    <a href="tel:+40768995442" class="btn call">
+                        <i class="fas fa-phone-alt"></i> Sună acum
+                    </a>
+                    <a href="https://wa.me/40768995442" class="btn whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Header & Navigation -->
-  <header>
-    <div class="nav-container">
-      <a href="#hero" class="nav-logo">
-        <img src="https://www.infinityedgeai.com/logo.png" alt="Infinity Edge AI Logo" />
-        <span>Infinity Edge AI</span>
-      </a>
-      <!-- Mobile menu toggle -->
-      <input type="checkbox" id="menu-toggle" />
-      <label for="menu-toggle" class="menu-icon">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-      <nav>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#team">Team</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+    <section class="services" id="servicii">
+        <div class="container">
+            <h2>Serviciile noastre</h2>
+            <p class="section-subtitle">Ce oferim?</p>
+            
+            <div class="service-cards">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>TRANSPORT PERSOANE</h3>
+                    <p>Dispunem de microbuze confortabile pentru a va face calatoria cat mai placuta si mai sigura. Curse Romania Germania, Belgia, Olanda, Italia si invers.</p>
+                    <a href="tel:+40768995442" class="btn call-small">
+                        <i class="fas fa-phone-alt"></i> Sună acum
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <h3>TRANSPORT COLETE</h3>
+                    <p>Garantam transporturi in siguranta pentru coletul tau cu microbuze performante in tari precum Germania, Belgia, Olanda, Franța, Italia, Cehia, Ungaria, Austria, Slovenia, Slovacia.</p>
+                    <a href="tel:+40768995442" class="btn call-small">
+                        <i class="fas fa-phone-alt"></i> Sună acum
+                    </a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>TRANSPORT MAȘINI</h3>
+                    <p>Masina ta va ajunge in siguranta in locatia dorita. Transportam masini pe platformă în regim international.</p>
+                    <a href="tel:+40768995442" class="btn call-small">
+                        <i class="fas fa-phone-alt"></i> Sună acum
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="routes" id="rute">
+        <div class="container">
+            <h2>Rutele noastre</h2>
+            <p class="section-subtitle">Efectuam curse si plecari ZILNIC din Romania spre:</p>
+            
+            <div class="countries-grid">
+                <div class="country-card">
+                    <div class="country-flag">🇩🇪</div>
+                    <h3>Germania</h3>
+                    <p>Aveți nevoie de un transport din sau spre Germania?</p>
+                    <a href="tel:+40768995442" class="btn route-btn">Rezervă</a>
+                </div>
+                
+                <div class="country-card">
+                    <div class="country-flag">🇧🇪</div>
+                    <h3>Belgia</h3>
+                    <p>Aveți nevoie de un transport din sau spre Belgia?</p>
+                    <a href="tel:+40768995442" class="btn route-btn">Rezervă</a>
+                </div>
+                
+                <div class="country-card">
+                    <div class="country-flag">🇳🇱</div>
+                    <h3>Olanda</h3>
+                    <p>Aveți nevoie de un transport din sau spre Olanda?</p>
+                    <a href="tel:+40768995442" class="btn route-btn">Rezervă</a>
+                </div>
+                
+                <div class="country-card">
+                    <div class="country-flag">🇫🇷</div>
+                    <h3>Franța</h3>
+                    <p>Aveți nevoie de un transport din sau spre Franța?</p>
+                    <a href="tel:+40768995442" class="btn route-btn">Rezervă</a>
+                </div>
+                
+                <div class="country-card">
+                    <div class="country-flag">🇮🇹</div>
+                    <h3>Italia</h3>
+                    <p>Aveți nevoie de un transport din sau spre Italia?</p>
+                    <a href="tel:+40768995442" class="btn route-btn">Rezervă</a>
+                </div>
+                
+                <div class="country-card">
+                    <div class="country-flag">🇨🇿</div>
+                    <h3>Cehia</h3>
+                    <p>Aveți nevoie de un transport din sau spre Cehia?</p>
+                    <a href="tel:+40768995442" class="btn route-btn">Rezervă</a>
+                </div>
+                
+                <div class="country-card">
+                    <div class="country-flag">🇭🇺</div>
+                    <h3>Ungaria</h3>
+                    <p>Aveți nevoie de un transport din sau spre Ungaria?</p>
+                    <a href="tel:+40768995442" class="btn route-btn">Rezervă</a>
+                </div>
+                
+                <div class="country-card">
+                    <div class="country-flag">🇦🇹</div>
+                    <h3>Austria</h3>
+                    <p>Aveți nevoie de un transport din sau spre Austria?</p>
+                    <a href="tel:+40768995442" class="btn route-btn">Rezervă</a>
+                </div>
+                
+                <div class="country-card">
+                    <div class="country-flag">🇸🇮</div>
+                    <h3>Slovenia</h3>
+                    <p>Aveți nevoie de un transport din sau spre Slovenia?</p>
+                    <a href="tel:+40768995442" class="btn route-btn">Rezervă</a>
+                </div>
+                
+                <div class="country-card">
+                    <div class="country-flag">🇸🇰</div>
+                    <h3>Slovacia</h3>
+                    <p>Aveți nevoie de un transport din sau spre Slovacia?</p>
+                    <a href="tel:+40768995442" class="btn route-btn">Rezervă</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits" id="beneficii">
+        <div class="container">
+            <h2>Beneficiile pe care le oferim</h2>
+            <p class="section-subtitle">De ce noi?</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Preț corect</h3>
+                    <p>Garantăm prețuri corecte pentru orice transport internațional.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Disponibili 24/7</h3>
+                    <p>Suntem la dispoziția ta oricând pentru a face o rezervare.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-hourglass-half"></i>
+                    </div>
+                    <h3>Timp optim</h3>
+                    <p>Nu pierdem timp și ajungem la timp și în siguranță.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Responsabilitate</h3>
+                    <p>Specialiștii noștri sunt foarte atenți la bunurile tale.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>De la adresă la adresă</h3>
+                    <p>Realizăm transport internațional de la adresă la adresă.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-suitcase"></i>
+                    </div>
+                    <h3>Bagaj 50 kg inclus</h3>
+                    <p>Dacă călătorești cu noi bagajul tău este inclus.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials" id="testimoniale">
+        <div class="container">
+            <h2>Recenzii</h2>
+            <p class="section-subtitle">Ce spun clienții noștri</p>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Am fost foarte multumita de serviciile WLM transport. Cel mai important pentru mine a fost ca s-a respectat ora de plecare si ora la care ne-au spus ca ajungem."</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Bagajele au ajuns intacte, exact asa cum le-am predat. RECOMAND CU INCREDERE !!!"</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Transport realizat fara probleme si la ora stabilita ! Firma de incredere, recomand"</p>
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Soferi responsabili, au fost 2 soferi care au condus in reprize si au respectat limitele de viteza."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="contact">
+        <div class="container">
+            <h2>Programează următoarea ta cursă</h2>
+            <div class="cta-phones">
+                <a href="tel:+40768995442" class="phone-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>0768 995 442</span>
+                </a>
+                <a href="tel:+40786743399" class="phone-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>0786 743 399</span>
+                </a>
+                <a href="tel:+40773885818" class="phone-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>0773 885 818</span>
+                </a>
+            </div>
+            <p class="cta-text">Ia legatura cu noi pentru a discuta pretul, ziua de plecare si alte detalii de care ai nevoie!</p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/40768995442" class="btn whatsapp-large">
+                    <i class="fab fa-whatsapp"></i> Scrie pe WhatsApp
+                </a>
+                <a href="mailto:wlmtransportinternational@gmail.com" class="btn email-large">
+                    <i class="fas fa-envelope"></i> Trimite email
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="WLM Transport Logo">
+                    <h3>WLM Transport</h3>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-phone"></i> 0768 995 442</p>
+                    <p><i class="fas fa-phone"></i> 0786 743 399</p>
+                    <p><i class="fas fa-phone"></i> 0773 885 818</p>
+                    <p><i class="fas fa-envelope"></i> wlmtransportinternational@gmail.com</p>
+                </div>
+                <div class="footer-routes">
+                    <h4>Rute transport</h4>
+                    <ul>
+                        <li>Germania</li>
+                        <li>Belgia</li>
+                        <li>Olanda</li>
+                        <li>Franța</li>
+                        <li>Italia</li>
+                        <li>Cehia</li>
+                        <li>Ungaria</li>
+                        <li>Austria</li>
+                        <li>Slovenia</li>
+                        <li>Slovacia</li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h4>Servicii</h4>
+                    <ul>
+                        <li>Transport persoane de la adresa la adresa</li>
+                        <li>Transport colete international de la adresa la adresa</li>
+                        <li>Transport masini pe platforma</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 WLM Transport. Toate drepturile rezervate.</p>
+                <p>
+                    <a href="https://anpc.ro/" target="_blank" rel="noopener noreferrer">ANPC</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="floating-contact">
+        <a href="https://wa.me/40768995442" class="float-whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:+40768995442" class="float-call">
+            <i class="fas fa-phone-alt"></i>
+        </a>
     </div>
-  </header>
 
-  <!-- Hero Section with Particles -->
-  <section id="hero">
-    <div id="particles-js"></div>
-    <div class="hero-content" data-aos="fade-up">
-      <h1>Shaping the Future with AI</h1>
-      <p>
-        At Infinity Edge AI, we push the boundaries of artificial intelligence to deliver groundbreaking solutions that empower businesses worldwide.
-      </p>
-      <a href="#about" class="btn-primary">Learn More</a>
-    </div>
-    <div class="scroll-indicator"></div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" data-aos="fade-up">
-    <h2>About Infinity Edge AI</h2>
-    <p>
-      Infinity Edge AI is a forward-thinking company offering innovative AI solutions. Our expert team blends artificial intelligence, data science, and software engineering to craft bespoke, high-impact products.
-    </p>
-    <p class="compliance-text">
-      We develop fully compliant, enterprise-grade solutions that meet the highest industry standards. Our certified AI and automation services are backed by extensive expertise in Microsoft Azure, ensuring every project is secure, scalable, and innovative.
-    </p>
-    <div class="partner-badge" data-aos="fade-up" data-aos-delay="200">
-      Proud Microsoft Partner
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section id="services" data-aos="fade-up">
-    <h2>Our Services</h2>
-    <div class="services-container">
-      <div class="service-box" data-aos="fade-up" data-aos-delay="100">
-        <h3>AI Consulting</h3>
-        <p>
-          We help businesses identify opportunities to leverage AI technologies for optimal efficiency and innovation.
-        </p>
-      </div>
-      <div class="service-box" data-aos="fade-up" data-aos-delay="200">
-        <h3>Custom AI Solutions</h3>
-        <p>
-          Our team designs and develops tailored AI solutions for your specific industry needs.
-        </p>
-      </div>
-      <div class="service-box" data-aos="fade-up" data-aos-delay="300">
-        <h3>Machine Learning Models</h3>
-        <p>
-          We build and deploy advanced machine learning models to unlock insights from complex data.
-        </p>
-      </div>
-      <div class="service-box" data-aos="fade-up" data-aos-delay="400">
-        <h3>Data Analysis &amp; Insights</h3>
-        <p>
-          Transform raw data into actionable insights for strategic decision-making and growth.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Team Section -->
-  <section id="team" data-aos="fade-up">
-    <h2>Meet Our Team</h2>
-    <div class="team-container">
-      <div class="team-member" data-aos="fade-up" data-aos-delay="100">
-        <img src="https://media.licdn.com/dms/image/v2/D4D03AQFDwEfjc1olWw/profile-displayphoto-shrink_400_400/B4DZVN27D0G4Ak-/0/1740767998815?e=1746662400&v=beta&t=20bjxU_6pPjg6jhNbQkg5n9uu6tg-KV6ilrg_xv34-g" alt="Marius Filipaş">
-        <h3>Marius Filipaş</h3>
-        <p>
-          Co-Founder &amp; Managing Partner<br>
-          <a href="mailto:marius.filipas@infinityedgeai.com">marius.filipas@infinityedgeai.com</a>
-        </p>
-      </div>
-      <div class="team-member" data-aos="fade-up" data-aos-delay="200">
-        <img src="https://static.vecteezy.com/system/resources/thumbnails/033/882/148/small_2x/transparent-background-person-icon-free-png.png" alt="Marius Pădureanu">
-        <h3>Marius Pădureanu</h3>
-        <p>
-          Co-Founder &amp; Managing Partner<br>
-          <a href="mailto:marius@infinityedgeai.com">marius@infinityedgeai.com</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" data-aos="fade-up">
-    <h2>Contact Us</h2>
-    <div class="contact-info">
-      <p>
-        Have a project in mind or just want to chat? We’d love to hear from you.
-      </p>
-      <p>
-        <strong>General Inquiries:</strong><br>
-        <a href="mailto:office@infinityedgeai.com">office@infinityedgeai.com</a>
-      </p>
-      <p><strong>Address:</strong></p>
-      <address>
-        NR. 60 Strada 1 Decembrie 1918<br>
-        Piatra-Neamţ, Neamţ, 610290, Romania
-      </address>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>
-      &copy; <span class="footer-year"></span> Infinity Edge AI. All rights reserved.
-    </p>
-  </footer>
-
-  <!-- Scripts -->
-  <!-- Particles.js Library -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script>
-    /* ParticlesJS Configuration */
-    particlesJS("particles-js", {
-      "particles": {
-        "number": {
-          "value": 80,
-          "density": { "enable": true, "value_area": 800 }
-        },
-        "color": { "value": "#ffffff" },
-        "shape": {
-          "type": "circle",
-          "stroke": { "width": 0, "color": "#000000" },
-          "polygon": { "nb_sides": 5 }
-        },
-        "opacity": { "value": 0.5, "random": false },
-        "size": { "value": 3, "random": true },
-        "line_linked": {
-          "enable": true,
-          "distance": 150,
-          "color": "#ffffff",
-          "opacity": 0.4,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 4,
-          "direction": "none",
-          "random": false,
-          "straight": false,
-          "out_mode": "out"
-        }
-      },
-      "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-          "onhover": { "enable": true, "mode": "repulse" },
-          "onclick": { "enable": true, "mode": "push" },
-          "resize": true
-        },
-        "modes": {
-          "repulse": { "distance": 100 },
-          "push": { "particles_nb": 4 }
-        }
-      },
-      "retina_detect": true
-    });
-  </script>
-  <!-- AOS Animation Library JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>
-    AOS.init({ duration: 1000, once: true });
-    document.querySelector('.footer-year').textContent = new Date().getFullYear();
-
-    // Preloader removal
-    window.addEventListener('load', function() {
-      const preloader = document.getElementById('preloader');
-      preloader.style.opacity = '0';
-      setTimeout(() => { preloader.style.display = 'none'; }, 500);
-    });
-
-    // Back-to-top button functionality
-    const backToTop = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-        backToTop.classList.add('show');
-      } else {
-        backToTop.classList.remove('show');
-      }
-    });
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
