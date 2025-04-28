@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -520,3 +520,110 @@
           <a href="mailto:marius@infinityedgeai.com">marius@infinityedgeai.com</a>
         </p>
       </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" data-aos="fade-up">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <p>
+        Have a project in mind or just want to chat? We’d love to hear from you.
+      </p>
+      <p>
+        <strong>General Inquiries:</strong><br>
+        <a href="mailto:office@infinityedgeai.com">office@infinityedgeai.com</a>
+      </p>
+      <p><strong>Address:</strong></p>
+      <address>
+        NR. 60 Strada 1 Decembrie 1918<br>
+        Piatra-Neamţ, Neamţ, 610290, Romania
+      </address>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      &copy; <span class="footer-year"></span> Infinity Edge AI. All rights reserved.
+    </p>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Particles.js Library -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    /* ParticlesJS Configuration */
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": { "enable": true, "value_area": 800 }
+        },
+        "color": { "value": "#ffffff" },
+        "shape": {
+          "type": "circle",
+          "stroke": { "width": 0, "color": "#000000" },
+          "polygon": { "nb_sides": 5 }
+        },
+        "opacity": { "value": 0.5, "random": false },
+        "size": { "value": 3, "random": true },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 4,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out"
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "repulse" },
+          "onclick": { "enable": true, "mode": "push" },
+          "resize": true
+        },
+        "modes": {
+          "repulse": { "distance": 100 },
+          "push": { "particles_nb": 4 }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+  <!-- AOS Animation Library JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+    document.querySelector('.footer-year').textContent = new Date().getFullYear();
+
+    // Preloader removal
+    window.addEventListener('load', function() {
+      const preloader = document.getElementById('preloader');
+      preloader.style.opacity = '0';
+      setTimeout(() => { preloader.style.display = 'none'; }, 500);
+    });
+
+    // Back-to-top button functionality
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
