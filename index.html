@@ -143,8 +143,11 @@
     }
     /* Hero Section */
     #hero {
-      position: relative;
-      width: 100%;
+      position: relative; /* Keep relative for particles and content */
+      /* width: 100%; REMOVE this */
+      width: 100vw; /* Force full viewport width */
+      left: 50%; /* Center the 100vw element */
+      transform: translateX(-50%); /* Center the 100vw element */
       height: 80vh;
       overflow: hidden;
       background: linear-gradient(-45deg, #0c0f15, #081229, #0f1e40, #1ec6ff);
@@ -154,6 +157,15 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      /* Override generic section styles that might constrain width */
+      max-width: none;
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 0; /* Remove horizontal padding */
+      padding-right: 0; /* Remove horizontal padding */
+      /* Keep vertical padding if needed, or adjust */
+      padding-top: 0; /* Adjust as needed */
+      padding-bottom: 0; /* Adjust as needed */
     }
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
